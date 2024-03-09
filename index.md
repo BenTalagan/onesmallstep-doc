@@ -23,6 +23,9 @@ Alternative step input tool for Reaper
 ![](./OSS/OSS.png)
 {:style="text-align: center"}
 
+[Support forum thread](https://forum.cockos.com/showthread.php?t=288076) · [Source Repository](https://github.com/ReaTeam/ReaScripts) · [Reapack](https://reapack.com)
+{:style="text-align: center"}
+
 # Documentation index
 
 - Documentation for [v0.9.6](v0.9.6.html)
