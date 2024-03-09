@@ -14,14 +14,15 @@
 
 </style>
 
-<p style="text-align: center; font-size:40px; font-weight:bold">One Small Step</p>
+One Small Step
+{:style="text-align: center; font-size:40px; font-weight:bold"}
 
-<p style="text-align: center;color:grey; font-size:20px">Alternative step input tool for Reaper</p>
+Alternative step input tool for Reaper
+{:style="text-align: center;color:grey; font-size:20px"}
 
-<p style="text-align: center"><img src="./OSS/OSS.png" alt="" /></p>
+![](./OSS/OSS.png)
+{:style="text-align: center"}
 
-<h1 id="documentation-index">Documentation index</h1>
+# Documentation index
 
-<ul>
-  <li>Documentation for <a href="v0.9.6.html">v0.9.6</a></li>
-</ul>
+- Documentation for [v0.9.6](v0.9.6.html)
