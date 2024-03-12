@@ -20,7 +20,7 @@ One Small Step
 Alternative step input tool for Reaper
 {:style="text-align: center;color:grey; font-size:20px"}
 
-![](./OSS/OSS.png)
+![](./0.9.7/OSS.png)
 {:style="text-align: center"}
 
 [Support forum thread](https://forum.cockos.com/showthread.php?t=288076) · [Source Repository](https://github.com/ReaTeam/ReaScripts) · [Reapack](https://reapack.com)
