@@ -24,6 +24,22 @@
 
 <h1 id="documentation-index">Documentation index</h1>
 
-<ul>
-  <li>Documentation for <a href="v0.9.6.html">v0.9.6</a></li>
-</ul>
+<script>
+  let documented_versions = ["0.9.6", "0.9.7"]
+
+  document.write("<ul>");
+  for(let i = 0; i < documented_versions.length ; i++) {
+    let v = documented_versions[i]
+    document.write('<li>Documentation for <a href="v' + v + '.html">v' + v + '</a></li>')
+  }
+  document.write("</ul>")
+
+  let sp          = new URLSearchParams(document.location.search)
+  let ver         = sp.get('ver')
+
+  if(documented_versions.includes(ver)) {
+    let root = document.location.href.substring(0, document.location.href.lastIndexOf("/"));
+    document.location = root + "/v" + ver + ".html";
+  }
+</script>
+

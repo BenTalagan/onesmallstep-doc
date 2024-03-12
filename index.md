@@ -28,4 +28,21 @@ Alternative step input tool for Reaper
 
 # Documentation index
 
-- Documentation for [v0.9.6](v0.9.6.html)
+<script>
+  let documented_versions = ["0.9.6", "0.9.7"]
+
+  document.write("<ul>");
+  for(let i = 0; i < documented_versions.length ; i++) {
+    let v = documented_versions[i]
+    document.write('<li>Documentation for <a href="v' + v + '.html">v' + v + '</a></li>')
+  }
+  document.write("</ul>")
+
+  let sp          = new URLSearchParams(document.location.search)
+  let ver         = sp.get('ver')
+
+  if(documented_versions.includes(ver)) {
+    let root = document.location.href.substring(0, document.location.href.lastIndexOf("/"));
+    document.location = root + "/v" + ver + ".html";
+  }
+</script>

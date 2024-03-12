@@ -20,4 +20,5 @@ def build_doc(name, with_pdf: true)
 end
 
 build_doc("v0.9.6", with_pdf: false)
+build_doc("v0.9.7", with_pdf: false)
 build_doc("index", with_pdf: false)

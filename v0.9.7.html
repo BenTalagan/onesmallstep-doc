@@ -16,13 +16,13 @@
 
 <p><br style="line-height:200px" /></p>
 
-<p style="text-align: center; font-size:40px; font-weight:bold">One Small Step - v0.9.6</p>
+<p style="text-align: center; font-size:40px; font-weight:bold">One Small Step - v0.9.7</p>
 
 <p style="text-align: center;color:grey; font-size:20px">Alternative step input tool for Reaper</p>
 
 <p><br /></p>
 
-<p style="text-align: center"><img src="./OSS/OSS.png" alt="" /></p>
+<p style="text-align: center"><img src="./0.9.7/OSS.png" alt="" /></p>
 
 <p><br /></p>
 
@@ -57,10 +57,11 @@
         </ol>
       </li>
       <li><a href="#edit-modes" id="markdown-toc-edit-modes">Edit modes</a>        <ol>
-          <li><a href="#write-mode-ossmodewritepngstylevertical-alignbottom" id="markdown-toc-write-mode-ossmodewritepngstylevertical-alignbottom">Write mode <img src="./OSS/mode_write.png" alt="" style="vertical-align:bottom" /></a></li>
-          <li><a href="#insert-mode-ossmodeinsertpngstylevertical-alignbottom" id="markdown-toc-insert-mode-ossmodeinsertpngstylevertical-alignbottom">Insert mode <img src="./OSS/mode_insert.png" alt="" style="vertical-align:bottom" /></a></li>
-          <li><a href="#replace-mode-ossmodereplacepngstylevertical-alignbottom" id="markdown-toc-replace-mode-ossmodereplacepngstylevertical-alignbottom">Replace mode <img src="./OSS/mode_replace.png" alt="" style="vertical-align:bottom" /></a></li>
-          <li><a href="#navigate-mode-ossmodenavigatepngstylevertical-alignbottom" id="markdown-toc-navigate-mode-ossmodenavigatepngstylevertical-alignbottom">Navigate mode <img src="./OSS/mode_navigate.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#write-mode-097modewritepngstylevertical-alignbottom" id="markdown-toc-write-mode-097modewritepngstylevertical-alignbottom">Write mode <img src="./0.9.7/mode_write.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#insert-mode-097modeinsertpngstylevertical-alignbottom" id="markdown-toc-insert-mode-097modeinsertpngstylevertical-alignbottom">Insert mode <img src="./0.9.7/mode_insert.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#replace-mode-097modereplacepngstylevertical-alignbottom" id="markdown-toc-replace-mode-097modereplacepngstylevertical-alignbottom">Replace mode <img src="./0.9.7/mode_replace.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#repitch-mode-097moderepitchpngstylevertical-alignbottom" id="markdown-toc-repitch-mode-097moderepitchpngstylevertical-alignbottom">Repitch mode <img src="./0.9.7/mode_repitch.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#navigate-mode-097modenavigatepngstylevertical-alignbottom" id="markdown-toc-navigate-mode-097modenavigatepngstylevertical-alignbottom">Navigate mode <img src="./0.9.7/mode_navigate.png" alt="" style="vertical-align:bottom" /></a></li>
           <li><a href="#edit-mode-modifier-keys" id="markdown-toc-edit-mode-modifier-keys">Edit mode modifier keys</a></li>
           <li><a href="#summary" id="markdown-toc-summary">Summary</a></li>
         </ol>
@@ -84,7 +85,7 @@
 
 <p>It offers multiple input methods, based on <strong>keyboard press/release events</strong>, or strict <strong>sustain pedal/action validation</strong>.</p>
 
-<p>It has three edit modes : <strong>Write</strong>, <strong>Insert</strong>, <strong>Replace</strong>, for <strong>inputing</strong>, <strong>inserting</strong>, <strong>erasing</strong>, <strong>translating</strong> notes with minimal use of the mouse. It will work outside of the MIDI editor (directly in the <strong>arrange view</strong>) ; this offers additional comfort and can speed up your workflow.</p>
+<p>It has four edit modes : <strong>Write</strong>, <strong>Insert</strong>, <strong>Replace</strong>, <strong>Repitch</strong> for <strong>inputing</strong>, <strong>inserting</strong>, <strong>erasing</strong>, <strong>translating</strong> notes with minimal use of the mouse. It will work outside of the MIDI editor (directly in the <strong>arrange view</strong>) ; this offers additional comfort and can speed up your workflow.</p>
 
 <p>It also has a <strong>snappy navigation</strong> mode with the sustain pedal, over the project grid, the item grid, note bounds, item bounds, etc.</p>
 
@@ -108,7 +109,15 @@
 
 <h1 id="installation">Installation</h1>
 
-<p>The current version is available through <a href="https://reapack.com">ReaPack</a>, from the official ReaTeam/Reascripts repository. It also needs the <strong>JS_ReaScriptAPI</strong> api by Julian Sader and the adapted <strong>ReaImGui</strong> library by Christian Fillion to work, which are both available through Reapack too. If you forget to install them, OSS will remind you to do so anyway.</p>
+<p>The current version is available through <a href="https://reapack.com">ReaPack</a>, from the official ReaTeam/Reascripts repository. To work, it also needs the following components from Reapack :</p>
+
+<ul>
+  <li><strong>JS_ReaScriptAPI</strong> by Julian Sader</li>
+  <li>The adapted <strong>ReaImGui</strong> library by Christian Fillion</li>
+  <li>The <strong>SWS/S&amp;M</strong> extension by the SWS team</li>
+</ul>
+
+<p>If you forget to install them, OSS will remind you to do so anyway and directly point you to the right place.</p>
 
 <p>A restart of Reaper is needed after install.</p>
 
@@ -126,9 +135,13 @@
 
 <p>After install, launch the <strong>talagan_One Small Step.lua</strong> action. The <strong>One Small Step</strong> window will open. As long as the window is visible, OSS is active.</p>
 
-<p>You can add a toolbar button in Reaper to toggle OSS. This will open/close the window and is quite convenient. A toolbar icon is provided with the installation.</p>
+<p style="text-align: center"><img src="./0.9.7/OSS.png" alt="" /></p>
 
-<p>At the top of it, the name of the <strong>target MIDI track / item / take</strong> will be displayed if there’s one eligible that matches your current cursor position and current selection.</p>
+<p>You can add a toolbar button in Reaper to toggle OSS. This will open/close the window and is quite convenient. A toolbar icon is provided with the installation (toolbar_one_small_step.png) :</p>
+
+<p style="text-align: center"><img src="./0.9.7/icon.png" alt="" /></p>
+
+<p>At the top of OSS’s window, the name of the <strong>target MIDI track / item / take</strong> will be displayed if there’s one eligible that matches your current cursor position and current selection.</p>
 
 <p>It is important to note that the track you’re working on should be <strong>armed for record</strong> (OSS will give you an indication if you forgot to arm the recording). If everything’s ready, a red circle will glow, meaning that in this configuration, One Small Step is able to do its job (listen to MIDI events, and step input/patch the current MIDI item). When you’re done with OSS, just close the window and it will be inactive.</p>
 
@@ -148,7 +161,7 @@
 
 <p>You can configure the response times with the following parameters :</p>
 
-<p style="text-align: center"><img src="./OSS/kpmode_options.png" alt="" /></p>
+<p style="text-align: center"><img src="./0.9.7/options_kpmode.png" alt="" /></p>
 
 <p>The <strong>Chord Aggregation time</strong> corresponds to the time window in which notes should be pressed together to be considered a chord (else, events will be treated separately).</p>
 
@@ -166,7 +179,7 @@
 
 <p>You can configure the response times with the following parameters :</p>
 
-<p style="text-align: center"><img src="./OSS/krmode_options.png" alt="" /></p>
+<p style="text-align: center"><img src="./0.9.7/options_krmode.png" alt="" /></p>
 
 <p>The forget time corresponds to the time window after which, if no other keys are released, the released keys are aggregated as a chord.</p>
 
@@ -223,7 +236,7 @@
 
 <p>All actions have an associated backward behavior. It may be triggered by holding the <strong>step back</strong> modifier key when pressing the sustain pedal, which can be configured to your will :</p>
 
-<p style="text-align: center"><img src="./OSS/step_back_param.png" alt="" /></p>
+<p style="text-align: center"><img src="./0.9.7/options_sustain_pedal.png" alt="" /></p>
 
 <p>See the effect of the <strong>step back</strong>, (and step forward) in <strong>Navigate</strong> mode :</p>
 
@@ -231,9 +244,9 @@
 
 <h2 id="edit-modes">Edit modes</h2>
 
-<p>There are three <strong>edit modes</strong>, and one <strong>navigation mode</strong>. Here’s an overview of all modes.</p>
+<p>There are four <strong>edit modes</strong>, and one <strong>navigation mode</strong>. Here’s an overview of all modes.</p>
 
-<h3 id="write-mode-ossmodewritepngstylevertical-alignbottom">Write mode <img src="./OSS/mode_write.png" alt="" style="vertical-align:bottom" /></h3>
+<h3 id="write-mode-097modewritepngstylevertical-alignbottom">Write mode <img src="./0.9.7/mode_write.png" alt="" style="vertical-align:bottom" /></h3>
 
 <p>It’s the default mode. <strong>Notes are added</strong> over the grid to what already exists.</p>
 
@@ -243,7 +256,7 @@
 
 <p>If no held keys match the current notes immediately preceding the cursor, the cursor will not rewind, unless you check the option for that.</p>
 
-<h3 id="insert-mode-ossmodeinsertpngstylevertical-alignbottom">Insert mode <img src="./OSS/mode_insert.png" alt="" style="vertical-align:bottom" /></h3>
+<h3 id="insert-mode-097modeinsertpngstylevertical-alignbottom">Insert mode <img src="./0.9.7/mode_insert.png" alt="" style="vertical-align:bottom" /></h3>
 
 <p><strong>Notes are added</strong>, and notes that follow are shifted forward.</p>
 
@@ -251,7 +264,7 @@
 
 <p style="text-align: center"><img src="./OSS/mode_example_insert.gif" alt="" /></p>
 
-<h3 id="replace-mode-ossmodereplacepngstylevertical-alignbottom">Replace mode <img src="./OSS/mode_replace.png" alt="" style="vertical-align:bottom" /></h3>
+<h3 id="replace-mode-097modereplacepngstylevertical-alignbottom">Replace mode <img src="./0.9.7/mode_replace.png" alt="" style="vertical-align:bottom" /></h3>
 
 <p><strong>Notes are added</strong>, and what was there is deleted. This can suppress or shorten notes, make holes, etc. Nothing is shifted.</p>
 
@@ -259,7 +272,17 @@
 
 <p style="text-align: center"><img src="./OSS/mode_example_replace.gif" alt="" /></p>
 
-<h3 id="navigate-mode-ossmodenavigatepngstylevertical-alignbottom">Navigate mode <img src="./OSS/mode_navigate.png" alt="" style="vertical-align:bottom" /></h3>
+<h3 id="repitch-mode-097moderepitchpngstylevertical-alignbottom">Repitch mode <img src="./0.9.7/mode_repitch.png" alt="" style="vertical-align:bottom" /></h3>
+
+<p><strong>Note pitches are modified</strong>, but the notes stay in place. When replacing chords, the exact same number of notes should be played or the cursor will not advance. If the cursor is not aligned with a note start, the cursor will not move (or will jump to next note start if you have ticked the “Allow navigating on key press/release events”). The sustain pedal will navigate forward to next note start. An option allows you to change the aggregation time window for chords.</p>
+
+<p>When stepping back, this mode will just rewind to the precedent note start.</p>
+
+<p>An option also allows to affect the velocities of changed notes (and you can also rework only velocities if you like, but the monitoring will not match what you’re playing of course).</p>
+
+<p style="text-align: center"><img src="./0.9.7/mode_example_repitch.gif" alt="" /></p>
+
+<h3 id="navigate-mode-097modenavigatepngstylevertical-alignbottom">Navigate mode <img src="./0.9.7/mode_navigate.png" alt="" style="vertical-align:bottom" /></h3>
 
 <p>This move moves the cursor, with snapping. It is convenient to wedge the cursor in place when notes do not align with the grid, or simply, to quickly span things. It works forward or backward.</p>
 
@@ -275,7 +298,7 @@
 
 <p>You can change the current mode by clicking on the mode icon in the mode edit bar <img src="./OSS/mode_write.png" alt="" style="vertical-align:bottom" />, but also, you can assign <strong>modifier keys</strong> to each one. That way, everything is fully configurable. You can chose to use modifier keys or not, you can chose to use the mini toolbar buttons or you can make your own mix :</p>
 
-<p style="text-align: center"><img src="./OSS/modifier_keys.png" alt="" /></p>
+<p style="text-align: center"><img src="./0.9.7/modifier_keys.png" alt="" /></p>
 
 <h3 id="summary">Summary</h3>
 
@@ -290,18 +313,23 @@
   <tbody>
     <tr>
       <td><strong>Write Mode</strong></td>
-      <td>Add notes</td>
+      <td>Add notes<br />SPA : Add rests (advances)</td>
       <td>Selective note delete</td>
     </tr>
     <tr>
       <td><strong>Insert Mode</strong></td>
-      <td>Add notes, shift following notes</td>
+      <td>Add notes, shift following notes<br />SPA : Add rests, shift following notes</td>
       <td>Shorten/Remove notes, shift back following notes</td>
     </tr>
     <tr>
       <td><strong>Replace Mode</strong></td>
-      <td>Add notes, shorten/delete/eat notes (do not shift)</td>
+      <td>Add notes, shorten/delete/eat notes (do not shift)<br />SPA : Shorten/delete/eat notes (do not shift)</td>
       <td>Shorten/Remove notes (do not shift)</td>
+    </tr>
+    <tr>
+      <td><strong>Repitch Mode</strong></td>
+      <td>Change note(s) pitch/vel + navigate to next note<br />SPA : Navigate to next note</td>
+      <td>Navigate to precedent note start</td>
     </tr>
     <tr>
       <td><strong>Navigate Mode</strong></td>
@@ -310,6 +338,8 @@
     </tr>
   </tbody>
 </table>
+
+<p style="text-align: right">SPA = Sustain Pedal Alone</p>
 
 <h2 id="note-length">Note Length</h2>
 
@@ -380,6 +410,10 @@
     <tr>
       <td>Change edit mode - Replace</td>
       <td>Switches to edit mode Replace</td>
+    </tr>
+    <tr>
+      <td>Change edit mode - Repitch</td>
+      <td>Switches to edit mode Repitch</td>
     </tr>
     <tr>
       <td>Change edit mode - Navigate</td>
@@ -503,6 +537,14 @@
     </tr>
     <tr>
       <td>Edit Action - ReplaceBack</td>
+      <td>Triggers the Replace back action once</td>
+    </tr>
+    <tr>
+      <td>Edit Action - Repitch</td>
+      <td>Triggers the Replace action once</td>
+    </tr>
+    <tr>
+      <td>Edit Action - RepitchBack</td>
       <td>Triggers the Replace back action once</td>
     </tr>
     <tr>
@@ -666,6 +708,8 @@
 <h1 id="credits">Credits</h1>
 
 <p>I have used important ideas from this great tool by @<strong>tenfour</strong>. Epic hail and thanks to him !</p>
+
+<p>One Small Step uses <strong>Jeremy Bernstein</strong> (<strong>@sockmonkey72</strong>)’s MIDIUtils library . Thanks for the precious work !</p>
 
 <p>Thanks to @<strong>cfillion</strong> for the precious pieces of advice given during the code review for reapack !</p>
 
