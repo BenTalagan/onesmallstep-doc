@@ -22,4 +22,6 @@ end
 build_doc("v0.9.6", with_pdf: false)
 build_doc("v0.9.7", with_pdf: false)
 build_doc("v0.9.8", with_pdf: false)
+build_doc("v0.9.9", with_pdf: false)
+build_doc("v0.9.10", with_pdf: false)
 build_doc("index", with_pdf: false)

@@ -16,7 +16,7 @@
 
 <p><br style="line-height:200px" /></p>
 
-<p style="text-align: center; font-size:40px; font-weight:bold">One Small Step - v0.9.8</p>
+<p style="text-align: center; font-size:40px; font-weight:bold">One Small Step - v0.9.9</p>
 
 <p style="text-align: center;color:grey; font-size:20px">Alternative step input tool for Reaper</p>
 
@@ -599,6 +599,15 @@
 <p>To address this, One Small Step installs a dedicated JSFX at the end of the input FX chain of the track of the MIDI item you’re editing, that listens to MIDI Note events, and puts them in a buffer. One Small Step allows you then to “commit” those notes in the MIDI item, depending on the method you’ve chosen (key release, sustain pedal event, dedicated reaper action called by your computer keyboard).</p>
 
 <h1 id="changelog">Changelog</h1>
+
+<p>V0.9.9 (March, 2024, the 14th) :</p>
+
+<ul>
+  <li>[Rework] Changed toolbar icon color</li>
+  <li>[Bug Fix] [Repitch Mode] Patched MIDIUtils API : successive snapped notes would be borked by the automatic overlap correction option (thanks @smandrap)</li>
+  <li>[Bug Fix] [Write Mode] CommitBack action would be blocked by sustain pedal blocker if called from action (thanks @hipox !)</li>
+  <li>[Bug Fix] [Write Mode] Sustain Pedal blocking system when (stepping back + miss) was broken</li>
+</ul>
 
 <p>V0.9.8 (March, 2024, the 14th) :</p>
 

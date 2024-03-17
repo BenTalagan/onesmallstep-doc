@@ -11,18 +11,17 @@
   tr td:first-child { text-align: left; border; background-color: lightgray; }
   th { padding-left:10px; padding-right:10px;  background-color: lightgray;}
   td.empty { border: none; background-color:white !important; height:20px }
-
 </style>
 
 <p><br style="line-height:200px" /></p>
 
-<p style="text-align: center; font-size:40px; font-weight:bold">One Small Step - v0.9.8</p>
+<p style="text-align: center; font-size:40px; font-weight:bold">One Small Step - v0.9.10</p>
 
 <p style="text-align: center;color:grey; font-size:20px">Alternative step input tool for Reaper</p>
 
 <p><br /></p>
 
-<p style="text-align: center"><img src="./0.9.7/OSS.png" alt="" /></p>
+<p style="text-align: center"><img src="./0.9.10/OSS.png" alt="" /></p>
 
 <p><br /></p>
 
@@ -62,6 +61,8 @@
           <li><a href="#replace-mode-097modereplacepngstylevertical-alignbottom" id="markdown-toc-replace-mode-097modereplacepngstylevertical-alignbottom">Replace mode <img src="./0.9.7/mode_replace.png" alt="" style="vertical-align:bottom" /></a></li>
           <li><a href="#repitch-mode-097moderepitchpngstylevertical-alignbottom" id="markdown-toc-repitch-mode-097moderepitchpngstylevertical-alignbottom">Repitch mode <img src="./0.9.7/mode_repitch.png" alt="" style="vertical-align:bottom" /></a></li>
           <li><a href="#navigate-mode-097modenavigatepngstylevertical-alignbottom" id="markdown-toc-navigate-mode-097modenavigatepngstylevertical-alignbottom">Navigate mode <img src="./0.9.7/mode_navigate.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#stretchcompress-mode-insert-mode-alternative-097modeinsertpngstylevertical-alignbottom" id="markdown-toc-stretchcompress-mode-insert-mode-alternative-097modeinsertpngstylevertical-alignbottom">Stretch/Compress mode (Insert mode alternative) <img src="./0.9.7/mode_insert.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#stuffunstuff-mode-replace-mode-alternative-097modereplacepngstylevertical-alignbottom" id="markdown-toc-stuffunstuff-mode-replace-mode-alternative-097modereplacepngstylevertical-alignbottom">Stuff/Unstuff mode (Replace mode alternative) <img src="./0.9.7/mode_replace.png" alt="" style="vertical-align:bottom" /></a></li>
           <li><a href="#edit-mode-modifier-keys" id="markdown-toc-edit-mode-modifier-keys">Edit mode modifier keys</a></li>
           <li><a href="#summary" id="markdown-toc-summary">Summary</a></li>
         </ol>
@@ -284,7 +285,7 @@
 
 <h3 id="navigate-mode-097modenavigatepngstylevertical-alignbottom">Navigate mode <img src="./0.9.7/mode_navigate.png" alt="" style="vertical-align:bottom" /></h3>
 
-<p>This move moves the cursor, with snapping. It is convenient to wedge the cursor in place when notes do not align with the grid, or simply, to quickly span things. It works forward or backward.</p>
+<p>This mode moves the cursor, with snapping. It is convenient to wedge the cursor in place when notes do not align with the grid, or simply, to quickly span things. It works forward or backward.</p>
 
 <p style="text-align: center"><img src="./OSS/mode_example_navigate.gif" alt="" /></p>
 
@@ -293,6 +294,28 @@
 <p style="text-align: center"><img src="./OSS/snap_options.png" alt="" /></p>
 
 <p>Currently, you can snap to <strong>note bounds</strong>, <strong>item bounds</strong>, <strong>project grid</strong>, or <strong>item grid</strong>.</p>
+
+<h3 id="stretchcompress-mode-insert-mode-alternative-097modeinsertpngstylevertical-alignbottom">Stretch/Compress mode (Insert mode alternative) <img src="./0.9.7/mode_insert.png" alt="" style="vertical-align:bottom" /></h3>
+
+<p>This mode is the Insert mode alternative, and is toggled when you set the operation marker by clicking on the mode indicator icon (just next to the playback widget, on the right).</p>
+
+<p>It does not add or remove notes, but stretches the content between the marker and the cursor (and pushes back what’s after the cursor).</p>
+
+<p>The back operation is compression.</p>
+
+<p style="text-align: center"><img src="./0.9.10/mode_example_stretch_compress.gif" alt="" /></p>
+
+<h3 id="stuffunstuff-mode-replace-mode-alternative-097modereplacepngstylevertical-alignbottom">Stuff/Unstuff mode (Replace mode alternative) <img src="./0.9.7/mode_replace.png" alt="" style="vertical-align:bottom" /></h3>
+
+<p>This mode is the Replace mode alternative, and is toggled when you set the operation marker by clicking on the mode indicator icon (just next to the playback widget, on the right).</p>
+
+<p>In a fixed time window, between the operation marker and the cursor, notes (and rests) are pushed at the end, and other ones are compressed. This is suitable for writing, for example, long runs with odd or prime number of notes on fixed time sections.</p>
+
+<p>The time reference is the first note of the time window. You can apply a modifier (the note length buttons change to show multipliers x4, x2, x1 etc).</p>
+
+<p>The back operation pops out notes from the time window.</p>
+
+<p style="text-align: center"><img src="./0.9.10/mode_example_stuff_unstuff.gif" alt="" /></p>
 
 <h3 id="edit-mode-modifier-keys">Edit mode modifier keys</h3>
 
@@ -319,7 +342,7 @@
     <tr>
       <td><strong>Insert Mode</strong></td>
       <td>Add notes, shift following notes<br />SPA : Add rests, shift following notes</td>
-      <td>Shorten/Remove notes, shift back following notes</td>
+      <td>Shorten/Remove notes,<br />shift back following notes</td>
     </tr>
     <tr>
       <td><strong>Replace Mode</strong></td>
@@ -330,6 +353,16 @@
       <td><strong>Repitch Mode</strong></td>
       <td>Change note(s) pitch/vel + navigate to next note<br />SPA : Navigate to next note</td>
       <td>Navigate to precedent note start</td>
+    </tr>
+    <tr>
+      <td><strong>Stretch Mode</strong></td>
+      <td>Stretch the time window between<br />marker and cursor</td>
+      <td>Compress the time window<br />between and cursor</td>
+    </tr>
+    <tr>
+      <td><strong>Stuff Mode</strong></td>
+      <td>Stuff notes into the time window<br />between marker and cursor)</td>
+      <td>Pops out notes from the<br />time window between marker and cursor</td>
     </tr>
     <tr>
       <td><strong>Navigate Mode</strong></td>
@@ -525,19 +558,19 @@
     </tr>
     <tr>
       <td>Edit Action - Insert</td>
-      <td>Triggers the Insert action once</td>
+      <td>Triggers the Insert (or Stretch) action once</td>
     </tr>
     <tr>
       <td>Edit Action - InsertBack</td>
-      <td>Triggers the Insert back action once</td>
+      <td>Triggers the Insert back (or Compress) action once</td>
     </tr>
     <tr>
       <td>Edit Action - Replace</td>
-      <td>Triggers the Replace action once</td>
+      <td>Triggers the Replace (or Stuff) action once</td>
     </tr>
     <tr>
       <td>Edit Action - ReplaceBack</td>
-      <td>Triggers the Replace back action once</td>
+      <td>Triggers the Replace back (or Unstuff) action once</td>
     </tr>
     <tr>
       <td>Edit Action - Repitch</td>
@@ -554,6 +587,14 @@
     <tr>
       <td>Edit Action - NavigateBack</td>
       <td>Triggers the Navigate back action once</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Set or remove operation marker</td>
+      <td>Sets/Moves/Removes the operation marker</td>
     </tr>
     <tr>
       <td> </td>
@@ -599,6 +640,26 @@
 <p>To address this, One Small Step installs a dedicated JSFX at the end of the input FX chain of the track of the MIDI item you’re editing, that listens to MIDI Note events, and puts them in a buffer. One Small Step allows you then to “commit” those notes in the MIDI item, depending on the method you’ve chosen (key release, sustain pedal event, dedicated reaper action called by your computer keyboard).</p>
 
 <h1 id="changelog">Changelog</h1>
+
+<p>V0.9.10 (March 2024? the 19th) :</p>
+
+<ul>
+  <li>[Feature] Compress/Stretch Submode</li>
+  <li>[Feature] Stuff Submode</li>
+  <li>[Enhance] Force item bound snapping if item grid snap is on</li>
+  <li>[Rework] PPQ Precise operations</li>
+  <li>[Rework] New code architecture and file hierarchy, big code rework</li>
+  <li>[Rework] Addind debugging support for Visual Studio Code (using mavriq lua sockets, thanks @mavriq)</li>
+</ul>
+
+<p>V0.9.9 (March, 2024, the 14th) :</p>
+
+<ul>
+  <li>[Rework] Changed toolbar icon color</li>
+  <li>[Bug Fix] [Repitch Mode] Patched MIDIUtils API : successive snapped notes would be borked by the automatic overlap correction option (thanks @smandrap)</li>
+  <li>[Bug Fix] [Write Mode] CommitBack action would be blocked by sustain pedal blocker if called from action (thanks @hipox !)</li>
+  <li>[Bug Fix] [Write Mode] Sustain Pedal blocking system when (stepping back + miss) was broken</li>
+</ul>
 
 <p>V0.9.8 (March, 2024, the 14th) :</p>
 

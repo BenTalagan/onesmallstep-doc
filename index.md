@@ -29,7 +29,7 @@ Alternative step input tool for Reaper
 # Documentation index
 
 <script>
-  let documented_versions = ["0.9.8", "0.9.7", "0.9.6"]
+  let documented_versions = ["0.9.10", "0.9.9", "0.9.8", "0.9.7", "0.9.6"]
 
   document.write("<ul>");
   for(let i = 0; i < documented_versions.length ; i++) {
