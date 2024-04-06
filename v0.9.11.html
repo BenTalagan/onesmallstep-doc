@@ -1,0 +1,824 @@
+<style>
+  body {margin:35px;font-size:20px; text-align:justify; max-width: 1000px; margin-left: auto; margin-right:auto; padding:40px; }
+  img {max-width:100%;}
+  h1 {font-size:40px;margin-top:50px;}
+  h2 {font-size:35px;margin-top:45px;}
+  h3 {font-size:25px;margin-top:35px;color:darkblue;}
+  h4 {font-size:20px;margin-top:30px;color:grey;margin-bottom:0px;}
+  table { margin: auto; font-size:20px; border-spacing: 0; border-collapse: collapse; }
+  td, th { text-align: center; border:1px solid black ; padding: 2px 5px; }
+  tr th:first-child { border: none; background-color:white; }
+  tr td:first-child { text-align: left; border; background-color: lightgray; }
+  th { padding-left:10px; padding-right:10px;  background-color: lightgray;}
+  td.empty { border: none; background-color:white !important; height:20px }
+</style>
+
+<p><br style="line-height:200px" /></p>
+
+<p style="text-align: center; font-size:40px; font-weight:bold">One Small Step - v0.9.11</p>
+
+<p style="text-align: center;color:grey; font-size:20px">Alternative step input tool for Reaper</p>
+
+<p><br /></p>
+
+<p style="text-align: center"><img src="./0.9.10/OSS.png" alt="" /></p>
+
+<p><br /></p>
+
+<p style="text-align: center;font-size:18px">User Manual</p>
+
+<div style="display:block; clear:both; page-break-after:always;"></div>
+
+<p><br style="line-height:200px" /></p>
+
+<h1 id="table-of-contents">Table of Contents</h1>
+
+<ol id="markdown-toc">
+  <li><a href="#table-of-contents" id="markdown-toc-table-of-contents">Table of Contents</a></li>
+  <li><a href="#purpose" id="markdown-toc-purpose">Purpose</a></li>
+  <li><a href="#author" id="markdown-toc-author">Author</a></li>
+  <li><a href="#license" id="markdown-toc-license">License</a></li>
+  <li><a href="#discussion" id="markdown-toc-discussion">Discussion</a></li>
+  <li><a href="#installation" id="markdown-toc-installation">Installation</a></li>
+  <li><a href="#important-configuration-note" id="markdown-toc-important-configuration-note">Important configuration note</a></li>
+  <li><a href="#documentation" id="markdown-toc-documentation">Documentation</a>    <ol>
+      <li><a href="#launching-one-small-step" id="markdown-toc-launching-one-small-step">Launching One Small Step</a></li>
+      <li><a href="#how-it-works" id="markdown-toc-how-it-works">How it works</a></li>
+      <li><a href="#input-methods-overview" id="markdown-toc-input-methods-overview">Input methods overview</a>        <ol>
+          <li><a href="#key-press-method-osskpmodeiconpngstylevertical-alignbottom" id="markdown-toc-key-press-method-osskpmodeiconpngstylevertical-alignbottom">Key Press method <img src="./OSS/kpmode_icon.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#key-release-method-osskrmodeiconpngstylevertical-alignbottom" id="markdown-toc-key-release-method-osskrmodeiconpngstylevertical-alignbottom">Key Release method <img src="./OSS/krmode_icon.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#punch-method-osspunchmodeiconpngstylevertical-alignbottom" id="markdown-toc-punch-method-osspunchmodeiconpngstylevertical-alignbottom">Punch method <img src="./OSS/punchmode_icon.png" alt="" style="vertical-align:bottom" /></a></li>
+        </ol>
+      </li>
+      <li><a href="#sustain-pedal--commit-actions" id="markdown-toc-sustain-pedal--commit-actions">Sustain Pedal / Commit Actions</a>        <ol>
+          <li><a href="#extending-held-notes" id="markdown-toc-extending-held-notes">Extending held notes</a></li>
+          <li><a href="#stepping-back" id="markdown-toc-stepping-back">Stepping back</a></li>
+        </ol>
+      </li>
+      <li><a href="#edit-modes" id="markdown-toc-edit-modes">Edit modes</a>        <ol>
+          <li><a href="#write-mode-097modewritepngstylevertical-alignbottom" id="markdown-toc-write-mode-097modewritepngstylevertical-alignbottom">Write mode <img src="./0.9.7/mode_write.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#insert-mode-097modeinsertpngstylevertical-alignbottom" id="markdown-toc-insert-mode-097modeinsertpngstylevertical-alignbottom">Insert mode <img src="./0.9.7/mode_insert.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#replace-mode-097modereplacepngstylevertical-alignbottom" id="markdown-toc-replace-mode-097modereplacepngstylevertical-alignbottom">Replace mode <img src="./0.9.7/mode_replace.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#repitch-mode-097moderepitchpngstylevertical-alignbottom" id="markdown-toc-repitch-mode-097moderepitchpngstylevertical-alignbottom">Repitch mode <img src="./0.9.7/mode_repitch.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#navigate-mode-097modenavigatepngstylevertical-alignbottom" id="markdown-toc-navigate-mode-097modenavigatepngstylevertical-alignbottom">Navigate mode <img src="./0.9.7/mode_navigate.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#stretchcompress-mode-insert-mode-alternative-097modeinsertpngstylevertical-alignbottom" id="markdown-toc-stretchcompress-mode-insert-mode-alternative-097modeinsertpngstylevertical-alignbottom">Stretch/Compress mode (Insert mode alternative) <img src="./0.9.7/mode_insert.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#stuffunstuff-mode-replace-mode-alternative-097modereplacepngstylevertical-alignbottom" id="markdown-toc-stuffunstuff-mode-replace-mode-alternative-097modereplacepngstylevertical-alignbottom">Stuff/Unstuff mode (Replace mode alternative) <img src="./0.9.7/mode_replace.png" alt="" style="vertical-align:bottom" /></a></li>
+          <li><a href="#edit-mode-modifier-keys" id="markdown-toc-edit-mode-modifier-keys">Edit mode modifier keys</a></li>
+          <li><a href="#summary" id="markdown-toc-summary">Summary</a></li>
+        </ol>
+      </li>
+      <li><a href="#note-length" id="markdown-toc-note-length">Note Length</a></li>
+      <li><a href="#velocity-limiter" id="markdown-toc-velocity-limiter">Velocity Limiter</a></li>
+      <li><a href="#playback" id="markdown-toc-playback">Playback</a></li>
+      <li><a href="#actions" id="markdown-toc-actions">Actions</a></li>
+    </ol>
+  </li>
+  <li><a href="#tips" id="markdown-toc-tips">Tips</a></li>
+  <li><a href="#about-step-input--input-fx-chain-issues-in-reaper" id="markdown-toc-about-step-input--input-fx-chain-issues-in-reaper">About step input + input FX chain issues in Reaper</a></li>
+  <li><a href="#changelog" id="markdown-toc-changelog">Changelog</a></li>
+  <li><a href="#credits" id="markdown-toc-credits">Credits</a></li>
+</ol>
+
+<div style="display:block; clear:both; page-break-after:always;"></div>
+
+<h1 id="purpose">Purpose</h1>
+
+<p><strong>One Small Step</strong> is a tool for performing <strong>MIDI note step input</strong> in REAPER. It is an alternative to Reaper’s standard step input, offering more control and tools, and allowing the use of the <strong>sustain pedal</strong> (+ keyboard modifier keys) for performing actions.</p>
+
+<p>It offers multiple input methods, based on <strong>keyboard press/release events</strong>, or strict <strong>sustain pedal/action validation</strong>.</p>
+
+<p>It has four edit modes : <strong>Write</strong>, <strong>Insert</strong>, <strong>Replace</strong>, <strong>Repitch</strong> for <strong>inputing</strong>, <strong>inserting</strong>, <strong>erasing</strong>, <strong>translating</strong> notes with minimal use of the mouse. It will work outside of the MIDI editor (directly in the <strong>arrange view</strong>) ; this offers additional comfort and can speed up your workflow.</p>
+
+<p>It also has a <strong>snappy navigation</strong> mode with the sustain pedal, over the project grid, the item grid, note bounds, item bounds, etc.</p>
+
+<p>It also addresses some issues with workflows that use the input FX chain for routing/transposing MIDI (because Reaper’s standard input bypasses the fx input chain, see the last section for an explanation).</p>
+
+<h1 id="author">Author</h1>
+
+<p>Ben ‘Talagan’ Babut</p>
+
+<h1 id="license">License</h1>
+
+<p>MIT.</p>
+
+<p>Since it is a script, the source code is the tool itself. But it’s distributed through reapack, and you can find the source repository <a href="https://github.com/ReaTeam/Reascripts">here on github</a>.</p>
+
+<h1 id="discussion">Discussion</h1>
+
+<p>The dedicated thread on REAPER forums is located here :</p>
+
+<p><a href="https://forum.cockos.com/showthread.php?t=288076">forum.cockos.com/showthread.php?t=288076</a></p>
+
+<h1 id="installation">Installation</h1>
+
+<p>The current version is available through <a href="https://reapack.com">ReaPack</a>, from the official ReaTeam/Reascripts repository. To work, it also needs the following components from Reapack :</p>
+
+<ul>
+  <li><strong>JS_ReaScriptAPI</strong> by Julian Sader</li>
+  <li>The adapted <strong>ReaImGui</strong> library by Christian Fillion</li>
+  <li>The <strong>SWS/S&amp;M</strong> extension by the SWS team</li>
+</ul>
+
+<p>If you forget to install them, OSS will remind you to do so anyway and directly point you to the right place.</p>
+
+<p>A restart of Reaper is needed after install.</p>
+
+<h1 id="important-configuration-note">Important configuration note</h1>
+
+<p>For a better comfort with One Small Step, <strong>you’re strongly encouraged to enable the following option in Reaper</strong> :</p>
+
+<p style="text-align: center"><img src="./OSS/undo_conf.png" alt="" /></p>
+
+<p>That way, all editing operations, when you perform an undo, will restore the edit cursor to where it was.</p>
+
+<h1 id="documentation">Documentation</h1>
+
+<h2 id="launching-one-small-step">Launching One Small Step</h2>
+
+<p>After install, launch the <strong>talagan_One Small Step.lua</strong> action. The <strong>One Small Step</strong> window will open. As long as the window is visible, OSS is active.</p>
+
+<p style="text-align: center"><img src="./0.9.7/OSS.png" alt="" /></p>
+
+<p>You can add a toolbar button in Reaper to toggle OSS. This will open/close the window and is quite convenient. A toolbar icon is provided with the installation (toolbar_one_small_step.png) :</p>
+
+<p style="text-align: center"><img src="./0.9.7/icon.png" alt="" /></p>
+
+<p>At the top of OSS’s window, the name of the <strong>target MIDI track / item / take</strong> will be displayed if there’s one eligible that matches your current cursor position and current selection.</p>
+
+<p>It is important to note that the track you’re working on should be <strong>armed for record</strong> (OSS will give you an indication if you forgot to arm the recording). If everything’s ready, a red circle will glow, meaning that in this configuration, One Small Step is able to do its job (listen to MIDI events, and step input/patch the current MIDI item). When you’re done with OSS, just close the window and it will be inactive.</p>
+
+<h2 id="how-it-works">How it works</h2>
+
+<p>Under the hood, OSS installs a companion helper JSFX on your tracks, in the input FX chain, to listen to MIDI events. That is why the record mode should be enabled, as well as the MIDI input be configured on the target track. The instances of this JSFX companion are automatically cleared when closing OSS’s window (you can disable this behavior, and use the <strong>Cleanup helper JSFXs</strong> action instead).</p>
+
+<h2 id="input-methods-overview">Input methods overview</h2>
+
+<p>One Small Step has three input methods : <strong>Key Press</strong>, <strong>Key Release</strong> and <strong>Punch</strong>.</p>
+
+<h3 id="key-press-method-osskpmodeiconpngstylevertical-alignbottom">Key Press method <img src="./OSS/kpmode_icon.png" alt="" style="vertical-align:bottom" /></h3>
+
+<p>With the <strong>Key Press method</strong>, notes are added (or deleted) on MIDI Controller <strong>key press</strong> events. It is suitable for inputing notes at a high pace. It is not error tolerant (you get what you play), but will only aggregate chords if keys are pressed simultaneously.</p>
+
+<p style="text-align: center"><img src="./OSS/kpmode.gif" alt="" /></p>
+
+<p>You can configure the response times with the following parameters :</p>
+
+<p style="text-align: center"><img src="./0.9.7/options_kpmode.png" alt="" /></p>
+
+<p>The <strong>Chord Aggregation time</strong> corresponds to the time window in which notes should be pressed together to be considered a chord (else, events will be treated separately).</p>
+
+<p>The <strong>Sustain Inertia</strong> is the time after which a key is considered “sticky” when entering another note. After this time, the first key will be considered held and extended.</p>
+
+<p style="text-align: center"><img src="./OSS/kpmode_sustain.gif" alt="" /></p>
+
+<p>You may find this useful in certain circumstances or annoying in others, so that behavior can be disabled.</p>
+
+<h3 id="key-release-method-osskrmodeiconpngstylevertical-alignbottom">Key Release method <img src="./OSS/krmode_icon.png" alt="" style="vertical-align:bottom" /></h3>
+
+<p>With the <strong>Key Release method</strong>, notes are added (or deleted) on MIDI Controller <strong>key release</strong> events. It is suitable for inputing notes at a low pace, correcting things by ear, especially for chords. This method is error tolerant, but tends to aggregate and skip notes easily when playing fast. This is pretty much the same as Reaper’s default step input method.</p>
+
+<p style="text-align: center"><img src="./OSS/krmode.gif" alt="" /></p>
+
+<p>You can configure the response times with the following parameters :</p>
+
+<p style="text-align: center"><img src="./0.9.7/options_krmode.png" alt="" /></p>
+
+<p>The forget time corresponds to the time window after which, if no other keys are released, the released keys are aggregated as a chord.</p>
+
+<h3 id="punch-method-osspunchmodeiconpngstylevertical-alignbottom">Punch method <img src="./OSS/punchmode_icon.png" alt="" style="vertical-align:bottom" /></h3>
+
+<p>With the <strong>Punch method</strong>, notes are NOT added on MIDI Controller key press/release events. Only the <strong>sustain pedal</strong> or <strong>commit (or commit back) action</strong> adds (or deletes) notes. It is suitable for validating everything by ear before input. Useful when testing chords or melodic ideas.</p>
+
+<p style="text-align: center"><img src="./OSS/punchmode.gif" alt="" /></p>
+
+<h2 id="sustain-pedal--commit-actions">Sustain Pedal / Commit Actions</h2>
+
+<p>The <strong>Sustain Pedal</strong> can be used for various tasks when doing step input with <strong>One Small Step</strong>. It acts as a <strong>validator</strong> for the current task (inputing or stepping back), with all input methods and within all edit modes.</p>
+
+<p>Alternatively, you can call OneSmallStep’s <strong>Commit</strong> action from Reaper, which has the same effect. This is convenient if you don’t have a sustain pedal, or if it feels more natural to you.</p>
+
+<h3 id="extending-held-notes">Extending held notes</h3>
+
+<p>The sustain pedal will also <strong>extend already held notes</strong>. If you’re working with a grid for example, this allows you to skip the configuration of the note length :</p>
+
+<p style="text-align: center"><img src="./OSS/hold_notes.gif" alt="" /></p>
+
+<p>Since with the <strong>Key Press method</strong>, notes are already written (and validated) when keys are pressed, the <strong>Sustain Pedal</strong> will only <strong>extend held notes</strong>. To summarize, the <strong>Sustain Pedal</strong> :</p>
+
+<p><br /></p>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Validates</th>
+      <th>Extends</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>KeyPress Method</strong></td>
+      <td> </td>
+      <td>x</td>
+    </tr>
+    <tr>
+      <td><strong>Punch Method</strong></td>
+      <td>x</td>
+      <td>x</td>
+    </tr>
+    <tr>
+      <td><strong>KeyRelease Method</strong></td>
+      <td>x</td>
+      <td>x</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="stepping-back">Stepping back</h3>
+
+<p>All actions have an associated backward behavior. It may be triggered by holding the <strong>step back</strong> modifier key when pressing the sustain pedal, which can be configured to your will :</p>
+
+<p style="text-align: center"><img src="./0.9.7/options_sustain_pedal.png" alt="" /></p>
+
+<p>See the effect of the <strong>step back</strong>, (and step forward) in <strong>Navigate</strong> mode :</p>
+
+<p style="text-align: center"><img src="./OSS/mode_example_navigate.gif" alt="" /></p>
+
+<h2 id="edit-modes">Edit modes</h2>
+
+<p>There are four <strong>edit modes</strong>, and one <strong>navigation mode</strong>. Here’s an overview of all modes.</p>
+
+<h3 id="write-mode-097modewritepngstylevertical-alignbottom">Write mode <img src="./0.9.7/mode_write.png" alt="" style="vertical-align:bottom" /></h3>
+
+<p>It’s the default mode. <strong>Notes are added</strong> over the grid to what already exists.</p>
+
+<p>When stepping back, <strong>notes are deleted selectively</strong> (you should press the corresponding note, then press the pedal + back modifier, or call the commit back action) :</p>
+
+<p style="text-align: center"><img src="./OSS/mode_example_write.gif" alt="" /></p>
+
+<p>If no held keys match the current notes immediately preceding the cursor, the cursor will not rewind, unless you check the option for that.</p>
+
+<h3 id="insert-mode-097modeinsertpngstylevertical-alignbottom">Insert mode <img src="./0.9.7/mode_insert.png" alt="" style="vertical-align:bottom" /></h3>
+
+<p><strong>Notes are added</strong>, and notes that follow are shifted forward.</p>
+
+<p>When stepping back, <strong>everything that is under the cursor is deleted</strong> (so notes will be deleted or shorten). Notes that follow the edit cursor are shifted back.</p>
+
+<p style="text-align: center"><img src="./OSS/mode_example_insert.gif" alt="" /></p>
+
+<h3 id="replace-mode-097modereplacepngstylevertical-alignbottom">Replace mode <img src="./0.9.7/mode_replace.png" alt="" style="vertical-align:bottom" /></h3>
+
+<p><strong>Notes are added</strong>, and what was there is deleted. This can suppress or shorten notes, make holes, etc. Nothing is shifted.</p>
+
+<p>When stepping back, <strong>everything that is under the cursor is deleted</strong> (so notes will be deleted or shorten).  Nothing is shifted.</p>
+
+<p style="text-align: center"><img src="./OSS/mode_example_replace.gif" alt="" /></p>
+
+<h3 id="repitch-mode-097moderepitchpngstylevertical-alignbottom">Repitch mode <img src="./0.9.7/mode_repitch.png" alt="" style="vertical-align:bottom" /></h3>
+
+<p><strong>Note pitches are modified</strong>, but the notes stay in place. When replacing chords, the exact same number of notes should be played or the cursor will not advance. If the cursor is not aligned with a note start, the cursor will not move (or will jump to next note start if you have ticked the “Allow navigating on key press/release events”). The sustain pedal will navigate forward to next note start. An option allows you to change the aggregation time window for chords.</p>
+
+<p>When stepping back, this mode will just rewind to the precedent note start.</p>
+
+<p>An option also allows to affect the velocities of changed notes (and you can also rework only velocities if you like, but the monitoring will not match what you’re playing of course).</p>
+
+<p style="text-align: center"><img src="./0.9.7/mode_example_repitch.gif" alt="" /></p>
+
+<h3 id="navigate-mode-097modenavigatepngstylevertical-alignbottom">Navigate mode <img src="./0.9.7/mode_navigate.png" alt="" style="vertical-align:bottom" /></h3>
+
+<p>This mode moves the cursor, with snapping. It is convenient to wedge the cursor in place when notes do not align with the grid, or simply, to quickly span things. It works forward or backward.</p>
+
+<p style="text-align: center"><img src="./OSS/mode_example_navigate.gif" alt="" /></p>
+
+<p>The snapping options may be found in the toolbar, in yellow :</p>
+
+<p style="text-align: center"><img src="./OSS/snap_options.png" alt="" /></p>
+
+<p>Currently, you can snap to <strong>note bounds</strong>, <strong>item bounds</strong>, <strong>project grid</strong>, or <strong>item grid</strong>.</p>
+
+<h3 id="stretchcompress-mode-insert-mode-alternative-097modeinsertpngstylevertical-alignbottom">Stretch/Compress mode (Insert mode alternative) <img src="./0.9.7/mode_insert.png" alt="" style="vertical-align:bottom" /></h3>
+
+<p>This mode is the Insert mode alternative, and is toggled when you set the operation marker by clicking on the mode indicator icon (just next to the playback widget, on the right).</p>
+
+<p>It does not add or remove notes, but stretches the content between the marker and the cursor (and pushes back what’s after the cursor).</p>
+
+<p>The back operation is compression.</p>
+
+<p style="text-align: center"><img src="./0.9.10/mode_example_stretch_compress.gif" alt="" /></p>
+
+<h3 id="stuffunstuff-mode-replace-mode-alternative-097modereplacepngstylevertical-alignbottom">Stuff/Unstuff mode (Replace mode alternative) <img src="./0.9.7/mode_replace.png" alt="" style="vertical-align:bottom" /></h3>
+
+<p>This mode is the Replace mode alternative, and is toggled when you set the operation marker by clicking on the mode indicator icon (just next to the playback widget, on the right).</p>
+
+<p>In a fixed time window, between the operation marker and the cursor, notes (and rests) are pushed at the end, and other ones are compressed. This is suitable for writing, for example, long runs with odd or prime number of notes on fixed time sections.</p>
+
+<p>The time reference is the first note of the time window. You can apply a modifier (the note length buttons change to show multipliers x4, x2, x1 etc).</p>
+
+<p>The back operation pops out notes from the time window.</p>
+
+<p style="text-align: center"><img src="./0.9.10/mode_example_stuff_unstuff.gif" alt="" /></p>
+
+<h3 id="edit-mode-modifier-keys">Edit mode modifier keys</h3>
+
+<p>You can change the current mode by clicking on the mode icon in the mode edit bar <img src="./OSS/mode_write.png" alt="" style="vertical-align:bottom" />, but also, you can assign <strong>modifier keys</strong> to each one. That way, everything is fully configurable. You can chose to use modifier keys or not, you can chose to use the mini toolbar buttons or you can make your own mix :</p>
+
+<p style="text-align: center"><img src="./0.9.7/modifier_keys.png" alt="" /></p>
+
+<h3 id="summary">Summary</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>Step Forward</th>
+      <th>Step Back</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Write</strong></td>
+      <td>Add notes<br />SPA : Add rests (advances)</td>
+      <td>Selective note delete</td>
+    </tr>
+    <tr>
+      <td><strong>Insert</strong></td>
+      <td>Add notes, shift following notes<br />SPA : Add rests, shift following notes</td>
+      <td>Shorten/Remove notes,<br />shift back following notes</td>
+    </tr>
+    <tr>
+      <td><strong>Replace</strong></td>
+      <td>Add notes, shorten/delete/eat notes (do not shift)<br />SPA : Shorten/delete/eat notes (do not shift)</td>
+      <td>Shorten/Remove notes (do not shift)</td>
+    </tr>
+    <tr>
+      <td><strong>Repitch</strong></td>
+      <td>Change note(s) pitch/vel + navigate to next note<br />SPA : Navigate to next note</td>
+      <td>Navigate to precedent note start</td>
+    </tr>
+    <tr>
+      <td><strong>Stretch</strong></td>
+      <td>Stretch the time window between<br />marker and cursor</td>
+      <td>Compress the time window<br />between and cursor</td>
+    </tr>
+    <tr>
+      <td><strong>Stuff</strong></td>
+      <td>Stuff notes into the time window<br />between marker and cursor)</td>
+      <td>Pops out notes from the<br />time window between marker and cursor</td>
+    </tr>
+    <tr>
+      <td><strong>Navigate</strong></td>
+      <td>Move edit cursor forward (with snap)</td>
+      <td>Move edit cursor backward (with snap)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p style="text-align: right">SPA = Sustain Pedal Alone</p>
+
+<h2 id="note-length">Note Length</h2>
+
+<p>When performing an edit action (Write/Insert/Replace), you have to choose a time length for inputing notes. This can be an absolute value (quarter note, half note, etc…)</p>
+
+<p style="text-align: center"><img src="./OSS/note_length.png" alt="" /></p>
+
+<p>or you can work on the basis of <strong>the project grid</strong> or the <strong>item note configuration</strong></p>
+
+<p style="text-align: center"><img src="./OSS/grid_length.png" alt="" /></p>
+
+<p>In the second case, you can apply modification factors to the base value. It can be noted that the grid swing is applied, like in this example :</p>
+
+<p style="text-align: center"><img src="./OSS/note_length_swing.gif" alt="" /></p>
+
+<h2 id="velocity-limiter">Velocity Limiter</h2>
+
+<p>You may interested by reducing the range of possible input velocities. You can find the Velocity Limiter in the input settings :</p>
+
+<p style="text-align: center"><img src="./0.9.11/VelocityLimiter.png" alt="" /></p>
+
+<p>The limiter offers two modes for limiting velocities, Clamp and Linear. Here are the two corresponding curves</p>
+
+<p style="text-align: center"><img src="./0.9.11/clamp.png" alt="" /> <img src="./0.9.11/linear.png" alt="" /></p>
+
+<h2 id="playback">Playback</h2>
+
+<p>One Small Step offers a convenient way to replay what you’ve written, without having to modify the edit cursor. You can use the playback widget for this <img src="./OSS/playback_widget.png" alt="" style="vertical-align:bottom" /></p>
+
+<p>The first button, is a play button. It will rewind by n mesures and play until the edit cursor. n is selectable with the combobox, and you can also choose the marker (mk) mode. The marker mode will start the playback from the <strong>OSS Playback</strong> marker, that you can set or remove with the third button. An example of flow using the marker playback :</p>
+
+<p style="text-align: center"><img src="./OSS/playback.gif" alt="" /></p>
+
+<h2 id="actions">Actions</h2>
+
+<p>Almost all actions and configuration options are available through independent Reaper actions. That way you can bind any action command / configuration key to a shortcut. Just search for <strong>OneSmallStep</strong> in the action window. Here’s the list :</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Action Name</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>OneSmallStep</td>
+      <td>Launches OSS</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Change input mode - KeyboardPress</td>
+      <td>Switches the input method to Key Press</td>
+    </tr>
+    <tr>
+      <td>Change input mode - KeyboardRelease</td>
+      <td>Switches the input method to Key Press</td>
+    </tr>
+    <tr>
+      <td>Change input mode - Punch</td>
+      <td>Switches the input method to Key Press</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Change edit mode - Write</td>
+      <td>Switches to edit mode Write</td>
+    </tr>
+    <tr>
+      <td>Change edit mode - Insert</td>
+      <td>Switches to edit mode Insert</td>
+    </tr>
+    <tr>
+      <td>Change edit mode - Replace</td>
+      <td>Switches to edit mode Replace</td>
+    </tr>
+    <tr>
+      <td>Change edit mode - Repitch</td>
+      <td>Switches to edit mode Repitch</td>
+    </tr>
+    <tr>
+      <td>Change edit mode - Navigate</td>
+      <td>Switches to edit mode Navigate</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Increase note len</td>
+      <td>Increases the current note length (or multiplier if in grid mode)</td>
+    </tr>
+    <tr>
+      <td>Decrease note len</td>
+      <td>Decreases the current note length (or multiplier if in grid mode)</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Change note len - 1_64</td>
+      <td>Self explanatory</td>
+    </tr>
+    <tr>
+      <td>Change note len - 1_32</td>
+      <td>Self explanatory</td>
+    </tr>
+    <tr>
+      <td>Change note len - 1_16</td>
+      <td>Self explanatory</td>
+    </tr>
+    <tr>
+      <td>Change note len - 1_8</td>
+      <td>Self explanatory</td>
+    </tr>
+    <tr>
+      <td>Change note len - 1_4</td>
+      <td>Self explanatory</td>
+    </tr>
+    <tr>
+      <td>Change note len - 1_2</td>
+      <td>Self explanatory</td>
+    </tr>
+    <tr>
+      <td>Change note len - 1</td>
+      <td>Self explanatory</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Change note len param source - OSS</td>
+      <td>Switches the note length mode to One Small Step</td>
+    </tr>
+    <tr>
+      <td>Change note len param source - ProjectGrid</td>
+      <td>Switches the note length mode to Project Grid</td>
+    </tr>
+    <tr>
+      <td>Change note len param source - ItemConf</td>
+      <td>Switches the note length mode to Item Note</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Change note len modifier - Straight</td>
+      <td>Toggles note length modification</td>
+    </tr>
+    <tr>
+      <td>Change note len modifier - Triplet</td>
+      <td>Toggles note length modification</td>
+    </tr>
+    <tr>
+      <td>Change note len modifier - Dotted</td>
+      <td>Toggles note length modification</td>
+    </tr>
+    <tr>
+      <td>Change note len modifier - Modified</td>
+      <td>Toggles note length modification</td>
+    </tr>
+    <tr>
+      <td>Change note len modifier - Tuplet</td>
+      <td>Toggles note length modification</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Edit Action - Commit</td>
+      <td>Triggers the current edit mode action (Write/Insert/Replace/Navigate)</td>
+    </tr>
+    <tr>
+      <td>Edit Action - CommitBack</td>
+      <td>Triggers the current edit mode action backward (Write/Insert/Replace/Navigate)</td>
+    </tr>
+    <tr>
+      <td>Edit Action - Write</td>
+      <td>Triggers the Write action once</td>
+    </tr>
+    <tr>
+      <td>Edit Action - WriteBack</td>
+      <td>Triggers the Write back action once</td>
+    </tr>
+    <tr>
+      <td>Edit Action - Insert</td>
+      <td>Triggers the Insert (or Stretch) action once</td>
+    </tr>
+    <tr>
+      <td>Edit Action - InsertBack</td>
+      <td>Triggers the Insert back (or Compress) action once</td>
+    </tr>
+    <tr>
+      <td>Edit Action - Replace</td>
+      <td>Triggers the Replace (or Stuff) action once</td>
+    </tr>
+    <tr>
+      <td>Edit Action - ReplaceBack</td>
+      <td>Triggers the Replace back (or Unstuff) action once</td>
+    </tr>
+    <tr>
+      <td>Edit Action - Repitch</td>
+      <td>Triggers the Repitch action once</td>
+    </tr>
+    <tr>
+      <td>Edit Action - RepitchBack</td>
+      <td>Triggers the Repitch back action once</td>
+    </tr>
+    <tr>
+      <td>Edit Action - Navigate</td>
+      <td>Triggers the Navigate action once</td>
+    </tr>
+    <tr>
+      <td>Edit Action - NavigateBack</td>
+      <td>Triggers the Navigate back action once</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Set or remove operation marker</td>
+      <td>Sets/Moves/Removes the operation marker</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Set or remove playback marker</td>
+      <td>Sets/Moves/Removes the playback marker</td>
+    </tr>
+    <tr>
+      <td>Playback</td>
+      <td>Launch playback</td>
+    </tr>
+    <tr>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>Cleanup helper JSFXs</td>
+      <td>Remove all installed instances of the companion JSFXs on instrumented tracks</td>
+    </tr>
+  </tbody>
+</table>
+
+<h1 id="tips">Tips</h1>
+
+<p>To greatly enhance your flow, you can define <strong>conditional actions</strong> that will be triggered only during OSS’s lifetime.</p>
+
+<p>That way, you may reuse shortcuts that you’d use in normal mode to make them do something else when using OSS. For example, I like using the numpad to quickly change the note length in OSS. The tool for this is SWS/Cycle actions. Take the following example :</p>
+
+<p style="text-align: center"><img src="./OSS/sws_cycle_action.png" alt="" /></p>
+
+<p>The Numpad Key 1 is reassigned to a conditional action that performs “Change note length to 1” when OSS is running and “Move contents of item” when OSS is not running (which was the action originally linked to Numpad Key 1).</p>
+
+<p>Redefining then all keys of the keypad gives you complete control on OSS’s configuration.</p>
+
+<h1 id="about-step-input--input-fx-chain-issues-in-reaper">About step input + input FX chain issues in Reaper</h1>
+
+<p>A bit more of explanation on that point : if you intensively use MIDI JSFXs on your track FX input chains for various purposes (transposition, routing, velocity modification, etc) like I do, you may have already encountered this problem.</p>
+
+<p>Since the default step input process is controlled by the MIDI control path of Reaper (for various very pertinent reasons), the FX input chain is bypassed. That means, when recording, and when step inputing, your MIDI flow will not behave the same way (channels are likely to be wrong, as well as note heights and velocities…). More funny, the piano roll preview will not match what is really written to the MIDI item by the step input process.</p>
+
+<p>To address this, One Small Step installs a dedicated JSFX at the end of the input FX chain of the track of the MIDI item you’re editing, that listens to MIDI Note events, and puts them in a buffer. One Small Step allows you then to “commit” those notes in the MIDI item, depending on the method you’ve chosen (key release, sustain pedal event, dedicated reaper action called by your computer keyboard).</p>
+
+<h1 id="changelog">Changelog</h1>
+
+<p>V0.9.11 (April, 2024, the 6th) :</p>
+
+<ul>
+  <li>[Feature] Added velocity limiter</li>
+</ul>
+
+<p>V0.9.10 (March, 2024, the 19th) :</p>
+
+<ul>
+  <li>[Feature] Compress/Stretch Submode</li>
+  <li>[Feature] Stuff Submode</li>
+  <li>[Enhance] Force item bound snapping if item grid snap is on</li>
+  <li>[Rework] PPQ Precise operations</li>
+  <li>[Rework] New code architecture and file hierarchy, big code rework</li>
+  <li>[Rework] Addind debugging support for Visual Studio Code (using mavriq lua sockets, thanks @mavriq)</li>
+</ul>
+
+<p>V0.9.9 (March, 2024, the 14th) :</p>
+
+<ul>
+  <li>[Rework] Changed toolbar icon color</li>
+  <li>[Bug Fix] [Repitch Mode] Patched MIDIUtils API : successive snapped notes would be borked by the automatic overlap correction option (thanks @smandrap)</li>
+  <li>[Bug Fix] [Write Mode] CommitBack action would be blocked by sustain pedal blocker if called from action (thanks @hipox !)</li>
+  <li>[Bug Fix] [Write Mode] Sustain Pedal blocking system when (stepping back + miss) was broken</li>
+</ul>
+
+<p>V0.9.8 (March, 2024, the 14th) :</p>
+
+<ul>
+  <li>[Bug Fix] Enhancing behaviour of the repitch mode when Reaper’s “Autocorrect overlapping notes” is checked (thanks @smandrap &amp; @Stevie !)</li>
+</ul>
+
+<p>V0.9.7 (March, 2024, the 13th) :</p>
+
+<ul>
+  <li>[Feature] Added repitch (+revel) mode (thanks @smandrap !)</li>
+  <li>[Fix] Added missing “Change Edit Mode” actions</li>
+  <li>[Doc] Added help button that redirects to current documentation</li>
+  <li>[Rework] Re arranged settings panel</li>
+  <li>[Rework] Reworked some icons and colors</li>
+  <li>[Rework] Started to use MIDI Utils API by sockmonkey72 instead of default MIDI API</li>
+</ul>
+
+<p>V0.9.6 (March, 2024, the 7th) :</p>
+
+<ul>
+  <li>[Feature] Added Replace mode</li>
+  <li>[Feature] Added Navigate mode</li>
+  <li>[Feature] Added auto-scroll arrange view option</li>
+  <li>[Feature] [All Input Modes] Handle grid size for note length with modifier factor</li>
+  <li>[Feature] [All Input Modes] Handle swing for grid size note length</li>
+  <li>[Feature] [Navigate] Snap on project grid (with swing)</li>
+  <li>[Feature] [Navigate] Snap on item grid (with swing)</li>
+  <li>[Feature] [Navigate] Snap on note start/ends</li>
+  <li>[Feature] [Navigate] Snap on item bounds</li>
+  <li>[Feature] [Navigate] Added option to allow navigation on key events (does not input notes)</li>
+  <li>[Feature] [Write] Step back delete/shortening now happens on every key press/release event (notes should match keys)</li>
+  <li>[Feature] [Write] Added option to prevent the cursor from being moved back if step back delete fails (notes don’t match keys, the user missed)</li>
+  <li>[Feature] [Insert] Step back delete can now make holes</li>
+  <li>[Feature] Added system to engage modes with buttons or with customizable modifiers</li>
+  <li>[Rework] [Write] Reworked Delete/Step back logic</li>
+  <li>[Rework] [Insert] Reworked Delete/Step back logic</li>
+  <li>[Rework] Removed option “do not add notes if step back modifier key is pressed”, not pertinent anymore</li>
+  <li>[Rework] Removed option “erase note ends even if they do not align on cursor”, since the eraser does more complex things, it does not fit in the new flow</li>
+  <li>[Bug Fix] n-tuplets always used a value of 2/n, now using precpow2(n)/n</li>
+  <li>[Bug Fix] Create new items when advancing only if insert mode is on</li>
+  <li>[Bug fix] Icons/Images coould be randomly wrong</li>
+</ul>
+
+<p>V0.9.5 (February, 2024, the 29th) :</p>
+
+<ul>
+  <li>[Feature] Added pedal repeater</li>
+  <li>[Feature] Added insert/cursor mode (inserts + move things forward, deletes backwards)</li>
+  <li>[UI] Aded status icons for modifier modes/keys (insert / backward / insert+backward)</li>
+  <li>[Rework] Changed folder structure</li>
+</ul>
+
+<p>V0.9.4 (February, 2024, the 26th) :</p>
+
+<ul>
+  <li>[Feature] Added option to allow erasing note endings that do not match cursor when stepping back</li>
+  <li>[Feature] Keypress Mode : Added Sustain Inertia to detect held keys when pressing other keys (can be disabled)</li>
+  <li>[Feature] Added options to tweak Key Release / Key Press reaction times</li>
+  <li>[Feature] Added option to choose if input notes are selected or not</li>
+  <li>[Feature] Added option to automatically cleanup JSFXs on closing (thanks @stevie !)</li>
+  <li>[Feature] Added option to prevent notes from being inserted if the sustain pedal modifier key is pressed (this blocks insertion, useful in KP mode when starting an erase operation)</li>
+  <li>[Bug Fix] Project boundaries were not updated if the edited item was the last one and was extended (thanks @daodan !)</li>
+  <li>[Bug Fix] Reduced intensive CPU usage when OSS is running due to unuseful calls to Undo_Begin/End</li>
+</ul>
+
+<p>V0.9.3 (February, 2024, the 23th) :</p>
+
+<ul>
+  <li>[Feature] The commit action/sustain pedal now extend notes if they were already held before (thanks @henu, @Martintl)</li>
+  <li>[Feature] Added Commit Back action to “do things” backward (shorten/remove notes) (thanks @Hipox)</li>
+  <li>[Feature] Added a modifier key setting (ctrl, shift, etc), to use in conjunction with the sustain pedal to trigger the commit back action (lol)</li>
+  <li>[Feature] Added settings panel</li>
+  <li>[Feature] Added setting to allow targetting items even if they are not selected (but the track is, and the cursor is contained by an item)</li>
+  <li>[Feature] Added setting to allow the automatic creation of MIOI items if none is selected</li>
+  <li>[Feature] It is possible to chose if the playback marker should be deleted, kept, or backed up for later when quitting OSS</li>
+  <li>[Feature] Added independent scripts to change the input mode</li>
+  <li>[Bug Fix] The helper JSFX window no longer pops up when it is added to a track and the “plugins &gt; autofloat newly added JSFX windows” option is on (thanks @daodan)</li>
+  <li>[Bug Fix] The pedal reset + undo could mess up the state of the plugin (now, the plugin does not touch the JSFX params anymore)</li>
+  <li>[Bug Fix] After opening OSS, the plugin would periodically trigger a refocus event on the Reaper main window. This now happen only once when needed.</li>
+  <li>[Bug Fix] Forgot to index the standalone set/remove playback marker action</li>
+  <li>[Rework] Better behaviour when changing focus between window, arrange view and midi editor</li>
+  <li>[Rework] Removed action mode (merged it with the Pedal Mode, they are actually the same)</li>
+  <li>[Rework] Input mode icons redesign</li>
+  <li>[Rework] Code src/architecture rework</li>
+</ul>
+
+<p>V0.9.1 (February, 2024, the 16th) :</p>
+
+<ul>
+  <li>[Feature] Added Keyboard Press mode</li>
+  <li>[Feature] Added playback (rewind and play) action (n measures)</li>
+  <li>[Feature] Added playback marker support</li>
+</ul>
+
+<p>V0.9 (February, 2024, the 13th) :</p>
+
+<ul>
+  <li>Added support for complex note length modification (+/- fractions between 0 and 1)</li>
+  <li>More compact UI (save space)</li>
+  <li>Reworked sustain pedal and action roles in all modes</li>
+  <li>Removed OFF mode : Redundant with closing OSS</li>
+  <li>Bug Fix : “change note len param source” actions where called “change note len modifier” instead</li>
+  <li>Big code refactoring</li>
+</ul>
+
+<p>V0.8 (February, 2024, the 10th) :</p>
+
+<ul>
+  <li>MIDI Items are now extended if the input notes overflow</li>
+  <li>Added Project Grid and MIDI Item conf modes to change the source for the note length</li>
+  <li>Added support for n-tuplets</li>
+  <li>Allow the use of the commit action in keyboard mode to insert rests</li>
+  <li>Allow the use of the commit action in pedal mode to act as the sustain pedal</li>
+  <li>Bug Fix : When launched from a toolbar button, update the button to OFF state when crashing or being terminated by REAPER</li>
+</ul>
+
+<p>V0.1 (February, 2024, the 7th) :</p>
+
+<ul>
+  <li>Initial version</li>
+</ul>
+
+<h1 id="credits">Credits</h1>
+
+<p>I have used important ideas from this great tool by @<strong>tenfour</strong>. Epic hail and thanks to him !</p>
+
+<p>One Small Step uses <strong>Jeremy Bernstein</strong> (<strong>@sockmonkey72</strong>)’s MIDIUtils library . Thanks for the precious work !</p>
+
+<p>Thanks to @<strong>cfillion</strong> for the precious pieces of advice given during the code review for reapack !</p>
+
+<p>A lot of thanks to all donators, and forum members that helped this tool to get better !</p>
+
+<p>@<strong>stevie</strong>, @<strong>hipox</strong>, @<strong>MartinTL</strong>, @<strong>henu</strong>, @<strong>Thonex</strong>, @<strong>smandrap</strong>, @<strong>SoaSchas</strong>, @<strong>daodan</strong>, @<strong>inthevoid</strong>, @<strong>dahya</strong>, @<strong>User41</strong>, @<strong>Spookye</strong>, @<strong>R.Cato</strong></p>
+
+<script>
+  let elements = document.querySelectorAll('td');
+  for(var i=0; i<elements.length; i++) {
+    let content = elements[i].innerHTML.trim()
+    if(content === "" || content === "&nbsp;" ) {
+      elements[i].classList.add("empty");
+    }
+  }
+</script>
+

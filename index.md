@@ -20,7 +20,7 @@ One Small Step
 Alternative step input tool for Reaper
 {:style="text-align: center;color:grey; font-size:20px"}
 
-![](./0.9.7/OSS.png)
+![](./0.9.10/OSS.png)
 {:style="text-align: center"}
 
 [Support forum thread](https://forum.cockos.com/showthread.php?t=288076) · [Source Repository](https://github.com/ReaTeam/ReaScripts) · [Reapack](https://reapack.com)
@@ -29,7 +29,7 @@ Alternative step input tool for Reaper
 # Documentation index
 
 <script>
-  let documented_versions = ["0.9.10", "0.9.9", "0.9.8", "0.9.7", "0.9.6"]
+  let documented_versions = ["0.9.11", "0.9.10", "0.9.9", "0.9.8", "0.9.7", "0.9.6"]
 
   document.write("<ul>");
   for(let i = 0; i < documented_versions.length ; i++) {
