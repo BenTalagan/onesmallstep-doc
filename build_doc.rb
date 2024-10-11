@@ -27,5 +27,7 @@ build_doc("v0.9.10", with_pdf: false)
 build_doc("v0.9.11", with_pdf: false)
 build_doc("v0.9.12", with_pdf: false)
 build_doc("v0.9.13", with_pdf: false)
+build_doc("v0.9.14", with_pdf: false)
+build_doc("v0.9.15", with_pdf: false)
 
 build_doc("index", with_pdf: false)

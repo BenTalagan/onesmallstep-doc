@@ -15,7 +15,7 @@
 
 <p><br style="line-height:200px" /></p>
 
-<p style="text-align: center; font-size:40px; font-weight:bold">One Small Step - v0.9.12</p>
+<p style="text-align: center; font-size:40px; font-weight:bold">One Small Step - v0.9.14</p>
 
 <p style="text-align: center;color:grey; font-size:20px">Alternative step input tool for Reaper</p>
 
@@ -70,6 +70,7 @@
       <li><a href="#note-length" id="markdown-toc-note-length">Note Length</a></li>
       <li><a href="#velocity-limiter" id="markdown-toc-velocity-limiter">Velocity Limiter</a></li>
       <li><a href="#playback" id="markdown-toc-playback">Playback</a></li>
+      <li><a href="#note-highlighting-during-play" id="markdown-toc-note-highlighting-during-play">Note highlighting during play</a></li>
       <li><a href="#actions" id="markdown-toc-actions">Actions</a></li>
     </ol>
   </li>
@@ -146,6 +147,10 @@
 <p>At the top of OSS’s window, the name of the <strong>target MIDI track / item / take</strong> will be displayed if there’s one eligible that matches your current cursor position and current selection.</p>
 
 <p>It is important to note that the track you’re working on should be <strong>armed for record</strong> (OSS will give you an indication if you forgot to arm the recording). If everything’s ready, a red circle will glow, meaning that in this configuration, One Small Step is able to do its job (listen to MIDI events, and step input/patch the current MIDI item). When you’re done with OSS, just close the window and it will be inactive.</p>
+
+<p>You can also temporarily disable OSS by clicking on the red glowing circle. That way, you can keep the window visible and use your MIDI controller without any editing effect from OSS.</p>
+
+<p style="text-align: center"><img src="./0.9.14/disable_enable.gif" alt="" /></p>
 
 <h2 id="how-it-works">How it works</h2>
 
@@ -438,7 +443,7 @@
 
 <h2 id="velocity-limiter">Velocity Limiter</h2>
 
-<p>You may interested by reducing the range of possible input velocities. You can find the Velocity Limiter in the input settings :</p>
+<p>You may interested in reducing the range of possible input velocities. You can find the Velocity Limiter in the input settings :</p>
 
 <p style="text-align: center"><img src="./0.9.11/VelocityLimiter.png" alt="" /></p>
 
@@ -453,6 +458,16 @@
 <p>The first button, is a play button. It will rewind by n mesures and play until the edit cursor. n is selectable with the combobox, and you can also choose the marker (mk) mode. The marker mode will start the playback from the <strong>OSS Playback</strong> marker, that you can set or remove with the third button. An example of flow using the marker playback :</p>
 
 <p style="text-align: center"><img src="./OSS/playback.gif" alt="" /></p>
+
+<h2 id="note-highlighting-during-play">Note highlighting during play</h2>
+
+<p>One Small Step also has a feature that may help you find your bearings on the piano roll, by <strong>highlighting the last pressed key</strong>.</p>
+
+<p>Sometimes, when the range of a MIDI item is wide for example, it might be hard to read midi notes in the MIDI editor. You might find convenient to quickly check if what you’re doing on your controller matches what’s already there (you may bypass OSS in the meantime by clicking on the red glowing circle, so that you can freely play on your controller without inputing any notes).</p>
+
+<p>You can activate the feature by clicking on the <strong>highlight notes during play</strong> button :</p>
+
+<p style="text-align: center"><img src="./0.9.14/note_highlighting.gif" alt="" /></p>
 
 <h2 id="actions">Actions</h2>
 
@@ -698,6 +713,20 @@
 <p>To address this, One Small Step installs a dedicated JSFX at the end of the input FX chain of the track of the MIDI item you’re editing, that listens to MIDI Note events, and puts them in a buffer. One Small Step allows you then to “commit” those notes in the MIDI item, depending on the method you’ve chosen (key release, sustain pedal event, dedicated reaper action called by your computer keyboard).</p>
 
 <h1 id="changelog">Changelog</h1>
+
+<p>V0.9.14 (June, 2024, the 6th) :</p>
+
+<ul>
+  <li>[Feature] Added note highlighting during play</li>
+  <li>[Feature] Reintroduced “Disarm OSS” mechanism</li>
+</ul>
+
+<p>V0.9.13 (May, 2024, the 2nd) :</p>
+
+<ul>
+  <li>[Bug Fix] [Write Mode] Commit back broken (thanks @samlletas !)</li>
+  <li>[Bug Fix] [Insert Mode] Cut + Add does not support extending held notes (thanks @samlletas !)</li>
+</ul>
 
 <p>V0.9.12 (May, 2024, the 1st) :</p>
 
